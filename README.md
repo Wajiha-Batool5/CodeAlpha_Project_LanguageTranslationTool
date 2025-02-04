@@ -20,7 +20,7 @@ The Simple Language Translator is a Python-based tool that allows users to trans
 To get started, clone this repository and install the required dependencies:
 
 ```
-git clone <(https://github.com/Wajiha-Batool5/CodeAlpha_Project_LanguageTranslationTool.git)>
+git clone https://github.com/Wajiha-Batool5/CodeAlpha_Project_LanguageTranslationTool.git
 cd <repository-directory>
 pip install deep-translator
 ```
