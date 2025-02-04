@@ -1,20 +1,20 @@
-from transformers import MarianMTModel, MarianTokenizer
+from googletrans import Translator
 
-# Specify the model name for the desired language pair
-model_name = 'Helsinki-NLP/opus-mt-en-es'  # Example: English to Spanish
+def translate_text(text, dest_language):
+    translator = Translator()
+    try:
+        translation = translator.translate(text, dest=dest_language)
+        return translation.text
+    except Exception as e:
+        return f"Error: {e}"
 
-# Load the tokenizer and model
-tokenizer = MarianTokenizer.from_pretrained(model_name)
-model = MarianMTModel.from_pretrained(model_name)
+def main():
+    print("=== Simple Language Translator ===")
+    text = input("Enter text to translate: ")
+    dest_language = input("Enter target language code (e.g., 'es' for Spanish, 'fr' for French): ")
+    
+    translated_text = translate_text(text, dest_language)
+    print(f"\nTranslated Text: {translated_text}")
 
-# Function to translate text
-def translate(text):
-    tokenized_text = tokenizer.prepare_seq2seq_batch([text], return_tensors='pt')
-    translation = model.generate(**tokenized_text)
-    translated_text = tokenizer.decode(translation[0], skip_special_tokens=True)
-    return translated_text
-
-# Example usage
-input_text = "Hello, how are you?"
-translated_text = translate(input_text)
-print(f"Translated Text: {translated_text}")
+if __name__ == "__main__":
+    main()
